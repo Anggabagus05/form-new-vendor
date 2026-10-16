@@ -1,0 +1,25 @@
+PAKET FORM VENDOR PT / CV
+=========================
+Isi paket:
+- index.html  : halaman form (sudah berisi logo)
+- submit.php  : penerima data dan file dari form
+
+Cara pasang (hosting yang mendukung PHP, misalnya cPanel / shared hosting):
+1. Unggah index.html dan submit.php ke folder yang sama di hosting.
+2. Buka submit.php, isi $EMAIL_NOTIF jika ingin notifikasi email (opsional).
+3. Buka index.html dari browser, isi form, lalu kirim.
+4. Setiap pengiriman tersimpan di folder data-vendor/<ID>/ berisi data.json,
+   ringkasan.txt, dan dokumen lampiran. Folder dibuat otomatis dan dilindungi
+   dari akses langsung lewat .htaccess (Apache).
+
+Catatan penting:
+- Jika memakai Nginx (bukan Apache), .htaccess tidak berlaku. Pindahkan
+  $FOLDER_SIMPAN ke luar folder web (misalnya /home/user/data-vendor).
+- Perlu PHP 7.4 atau lebih baru. Jika upload gagal, cek batas upload_max_filesize
+  dan post_max_size di PHP minimal 20M.
+- Tanpa PHP / hosting server, form tidak bisa mengirim; vendor akan diarahkan
+  mengunduh paket ZIP dan mengirimnya manual.
+- Library ZIP dimuat dari cdnjs.cloudflare.com. Simpan sendiri di server jika
+  situs Anda memblokir sumber luar.
+- Pertimbangkan menambah CAPTCHA (misalnya Cloudflare Turnstile) bila form
+  dibuka untuk umum.
